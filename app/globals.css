@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&family=Fraunces:ital,wght@1,400&display=swap");
+
+:root {
+  --font-mono: "IBM Plex Mono";
+  --font-sans: "Inter Tight";
+}
+
+html,
+body {
+  background: #0a1628;
+  color: #ffffff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2f4a;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2d4468;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 1px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Tooltip for beginner-friendly explanations */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted #60a5fa;
+}
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: #0a1628;
+  border: 1px solid #1e2f4a;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  max-width: 280px;
+  white-space: normal;
+  width: max-content;
+  max-width: 260px;
+  z-index: 100;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+  pointer-events: none;
+}
