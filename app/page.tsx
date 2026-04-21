@@ -104,7 +104,7 @@ const loadState = (): PortfolioState => {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return INITIAL_STATE;
     const parsed = JSON.parse(raw);
-    if (!parsed.cash && parsed.cash !== 0) return INITIAL_STATE;
+    if (!parsed || typeof parsed.cash !== 'number') return INITIAL_STATE; if (!Array.isArray(parsed.positions)) parsed.positions = []; if (!Array.isArray(parsed.journal)) parsed.journal = []; if (!Array.isArray(parsed.equityHistory)) parsed.equityHistory = [{ t: Date.now(), v: parsed.cash }]; if (!parsed.initialCapital) parsed.initialCapital = 100000; if (!parsed.startedAt) parsed.startedAt = Date.now();
     return parsed;
   } catch { return INITIAL_STATE; }
 };
