@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // @ts-nocheck
@@ -39,7 +39,7 @@ const INITIAL_ASSETS: Asset[] = [
 
 const seed = (n: number) => { let x = Math.sin(n) * 10000; return x - Math.floor(x); };
 
-// Drift prices realistically â€” each tick each asset takes a small random step
+// Drift prices realistically - each tick each asset takes a small random step
 // whose size is proportional to its realized volatility.
 const driftPrices = (assets: Asset[], tickCount: number): Asset[] => {
   return assets.map((a, i) => {
@@ -55,7 +55,7 @@ const driftPrices = (assets: Asset[], tickCount: number): Asset[] => {
 };
 
 // ============================================================================
-// PORTFOLIO STATE â€” persisted to localStorage
+// PORTFOLIO STATE - persisted to localStorage
 // ============================================================================
 
 type Position = {
@@ -181,7 +181,7 @@ const Pill = ({ children, tone = 'neutral', size = 'sm' }: any) => {
 };
 
 // ============================================================================
-// TRADE MODAL â€” the heart of the interactive simulator
+// TRADE MODAL - the heart of the interactive simulator
 // ============================================================================
 
 const TradeModal = ({ open, onClose, mode, asset, position, state, onConfirm }: any) => {
@@ -231,7 +231,7 @@ const TradeModal = ({ open, onClose, mode, asset, position, state, onConfirm }: 
         <div className="border-b border-[#1e2f4a] px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className={`text-xs font-mono tracking-wider uppercase ${isBuy ? 'text-[#60a5fa]' : 'text-[#ff5472]'}`}>
-              {isBuy ? 'â–² BUY' : 'â–¼ SELL'}
+              {isBuy ? '+ BUY' : '- SELL'}
             </div>
             <div className="text-sm font-mono">{asset.sym}</div>
             <div className="text-xs text-[#9ca3af]">{asset.name}</div>
@@ -337,7 +337,7 @@ const TradeModal = ({ open, onClose, mode, asset, position, state, onConfirm }: 
 };
 
 // ============================================================================
-// WELCOME MODAL â€” first-time visitors
+// WELCOME MODAL - first-time visitors
 // ============================================================================
 
 const WelcomeModal = ({ onClose }: any) => (
@@ -353,23 +353,23 @@ const WelcomeModal = ({ onClose }: any) => (
         </div>
       </div>
       <div className="p-6 space-y-4 text-sm text-[#9ca3af] leading-relaxed">
-        <p className="text-white text-base">Hey â€” thanks for checking this out.</p>
+        <p className="text-white text-base">Hey - thanks for checking this out.</p>
         <p>Winter Pi is a <span className="text-[#60a5fa]">simulation</span>. Everything here is fake: the prices, the signals, the news, the market regime. Nothing is connected to real crypto markets.</p>
-        <p>You start with <span className="text-white font-mono">$100,000</span> of fake money. Buy and sell coins, track your performance, test strategies, and learn how professional quant metrics work â€” all with zero real risk.</p>
+        <p>You start with <span className="text-white font-mono">$100,000</span> of fake money. Buy and sell coins, track your performance, test strategies, and learn how professional quant metrics work - all with zero real risk.</p>
         <div className="bg-[#0a1628] border border-[#1e2f4a] p-3 text-xs font-mono">
-          <div className="text-[#ffb627] mb-2">âš  SIMULATION ONLY</div>
+          <div className="text-[#ffb627] mb-2">! SIMULATION ONLY</div>
           <div className="space-y-1 text-[#9ca3af]">
-            <div>â€¢ Prices drift every few seconds, but they're fake</div>
-            <div>â€¢ "Signals" are pre-scripted examples, not real market data</div>
-            <div>â€¢ Your portfolio saves to this browser only â€” no account needed</div>
-            <div>â€¢ Nothing here is investment advice</div>
+            <div>* Prices drift every few seconds, but they're fake</div>
+            <div>* "Signals" are pre-scripted examples, not real market data</div>
+            <div>* Your portfolio saves to this browser only - no account needed</div>
+            <div>* Nothing here is investment advice</div>
           </div>
         </div>
         <p>Built by <span className="text-white">James Lee</span> in Stroudsburg, PA as a learning project.</p>
       </div>
       <div className="px-5 pb-5">
         <button onClick={onClose} className="w-full bg-[#60a5fa] text-black px-4 py-3 text-xs font-mono tracking-[0.18em] uppercase hover:bg-[#3b82f6]">
-          Got it â€” let me in
+          Got it - let me in
         </button>
       </div>
     </div>
@@ -419,7 +419,7 @@ const Landing = ({ onEnter }: any) => (
         <Pill tone="info" size="sm">SIM</Pill>
       </div>
       <button onClick={onEnter} className="text-xs font-mono tracking-wider uppercase bg-[#60a5fa] text-black px-4 py-2 hover:bg-[#3b82f6] transition-colors">
-        Open Terminal â†’
+        Open Terminal ->
       </button>
     </nav>
 
@@ -428,7 +428,7 @@ const Landing = ({ onEnter }: any) => (
         <div className="md:col-span-7">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-[#60a5fa]" />
-            <span className="text-[10px] font-mono tracking-[0.24em] text-[#60a5fa] uppercase">Crypto Paper Trading Â· by James Lee</span>
+            <span className="text-[10px] font-mono tracking-[0.24em] text-[#60a5fa] uppercase">Crypto Paper Trading . by James Lee</span>
           </div>
           <h1 className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight font-light text-white">
             Practice crypto<br/>
@@ -445,7 +445,7 @@ const Landing = ({ onEnter }: any) => (
             </button>
           </div>
           <div className="mt-6 inline-flex items-center gap-2 text-[10px] font-mono tracking-wider uppercase text-[#ffb627] border border-[#4a3a15] bg-[#2a1f0a] px-2 py-1">
-            <AlertCircle size={11}/> Simulated data Â· not real markets
+            <AlertCircle size={11}/> Simulated data . not real markets
           </div>
         </div>
 
@@ -479,7 +479,7 @@ const Landing = ({ onEnter }: any) => (
       <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-[#1e2f4a] border border-[#1e2f4a]">
         {[
           { k: 'Starting cash', v: '$100K', sub: 'fake money, real learning' },
-          { k: 'Coins tracked', v: '16',    sub: 'L1 Â· L2 Â· DeFi Â· AI Â· Meme' },
+          { k: 'Coins tracked', v: '16',    sub: 'L1 . L2 . DeFi . AI . Meme' },
           { k: 'Price updates', v: 'Live',  sub: 'simulated drift every 3s' },
           { k: 'Cost',          v: 'Free',  sub: 'forever, no signup' },
         ].map((s, i) => (
@@ -496,12 +496,12 @@ const Landing = ({ onEnter }: any) => (
       <div className="grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4">
           <div className="text-[10px] font-mono tracking-[0.24em] text-[#60a5fa] uppercase mb-4">What's inside</div>
-          <h2 className="text-3xl font-light tracking-tight leading-tight">Learn the tools pros use â€” without losing money figuring them out.</h2>
+          <h2 className="text-3xl font-light tracking-tight leading-tight">Learn the tools pros use - without losing money figuring them out.</h2>
         </div>
         <div className="md:col-span-8 grid md:grid-cols-2 gap-px bg-[#1e2f4a]">
           {[
             { icon: ShoppingCart, t: 'Live Paper Trading', d: 'Buy and sell 16 crypto assets with fake money. Prices drift in real time. Your portfolio saves in your browser.' },
-            { icon: Gauge,        t: 'Portfolio Health',   d: 'Hover any metric to learn what it means. Sharpe, drawdown, beta, volatility â€” explained in plain English.' },
+            { icon: Gauge,        t: 'Portfolio Health',   d: 'Hover any metric to learn what it means. Sharpe, drawdown, beta, volatility - explained in plain English.' },
             { icon: BarChart3,    t: 'Strategy Lab',        d: 'Test trading strategies against historical patterns. Compare results side by side.' },
             { icon: BookOpen,     t: 'Trade Journal',       d: 'Every trade auto-logs with your reasoning. Review your process, spot your patterns, improve over time.' },
           ].map((p, i) => (
@@ -518,7 +518,7 @@ const Landing = ({ onEnter }: any) => (
     <section className="relative border-t border-[#1e2f4a]">
       <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
         <div>
-          <div className="text-[10px] font-mono tracking-[0.24em] text-[#6b7280] uppercase mb-3">Simulation only Â· no real capital at risk</div>
+          <div className="text-[10px] font-mono tracking-[0.24em] text-[#6b7280] uppercase mb-3">Simulation only . no real capital at risk</div>
           <h3 className="text-4xl font-light tracking-tight max-w-xl leading-tight">Start paper trading. See if you'd make it as a quant.</h3>
         </div>
         <button onClick={onEnter} className="bg-[#60a5fa] text-black px-6 py-3 font-mono text-xs tracking-[0.18em] uppercase hover:bg-[#3b82f6] transition-colors flex items-center gap-2">
@@ -526,10 +526,10 @@ const Landing = ({ onEnter }: any) => (
         </button>
       </div>
       <div className="border-t border-[#1e2f4a] px-6 py-4 flex flex-col md:flex-row justify-between gap-2 text-[10px] font-mono tracking-wider text-[#6b7280] uppercase">
-        <div>WINTER PI Â· BUILT BY JAMES LEE Â· STROUDSBURG, PA Â· SIMULATION ONLY</div>
+        <div>WINTER PI . BUILT BY JAMES LEE . STROUDSBURG, PA . SIMULATION ONLY</div>
         <div className="flex gap-4">
-          <a href="https://github.com/winterpls/winter-pi" target="_blank" rel="noopener" className="hover:text-white transition-colors">SOURCE â†’</a>
-          <a href="https://linkedin.com/in/james-lee-032a04401" target="_blank" rel="noopener" className="hover:text-white transition-colors">LINKEDIN â†’</a>
+          <a href="https://github.com/winterpls/winter-pi" target="_blank" rel="noopener" className="hover:text-white transition-colors">SOURCE -></a>
+          <a href="https://linkedin.com/in/james-lee-032a04401" target="_blank" rel="noopener" className="hover:text-white transition-colors">LINKEDIN -></a>
         </div>
       </div>
     </section>
@@ -537,13 +537,13 @@ const Landing = ({ onEnter }: any) => (
 );
 
 // ============================================================================
-// DEMO BANNER â€” always visible
+// DEMO BANNER - always visible
 // ============================================================================
 
 const DemoBanner = () => (
   <div className="bg-[#2a1f0a] border-b border-[#4a3a15] px-4 h-7 flex items-center justify-center gap-2 text-[10px] font-mono tracking-wider uppercase text-[#ffb627] shrink-0">
     <AlertCircle size={11}/>
-    <span>DEMO MODE Â· All prices, signals, and data are simulated Â· Not tracking real markets</span>
+    <span>DEMO MODE . All prices, signals, and data are simulated . Not tracking real markets</span>
   </div>
 );
 
@@ -629,7 +629,7 @@ const Shell = ({ page, setPage, children, onExit, state, assets, onReset }: any)
               <span className="text-[#9ca3af]">{a.sym}</span>
               <span className="tabular-nums">{a.px < 1 ? a.px.toFixed(4) : fmtNum(a.px)}</span>
               <span className={`tabular-nums ${a.chg24 >= 0 ? 'text-[#60a5fa]' : 'text-[#ff5472]'}`}>
-                {a.chg24 >= 0 ? 'â–²' : 'â–¼'} {Math.abs(a.chg24).toFixed(2)}%
+                {a.chg24 >= 0 ? '+' : '-'} {Math.abs(a.chg24).toFixed(2)}%
               </span>
             </div>
           ))}
@@ -646,7 +646,7 @@ const Shell = ({ page, setPage, children, onExit, state, assets, onReset }: any)
           <span className="hidden md:inline">POSITIONS: {state.positions.length}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span>JAMES LEE Â· STROUDSBURG PA</span>
+          <span>JAMES LEE . STROUDSBURG PA</span>
         </div>
       </div>
 
@@ -678,7 +678,7 @@ const Dashboard = ({ state, assets, onOpenBuy }: any) => {
             <span className="text-[#60a5fa] font-medium">Welcome.</span>{' '}
             <span className="text-[#9ca3af]">You have $100,000 in simulated cash. Head to the Trade tab to start buying.</span>
           </div>
-          <button onClick={onOpenBuy} className="text-xs font-mono tracking-wider uppercase bg-[#60a5fa] text-black px-3 py-1.5 hover:bg-[#3b82f6]">Trade â†’</button>
+          <button onClick={onOpenBuy} className="text-xs font-mono tracking-wider uppercase bg-[#60a5fa] text-black px-3 py-1.5 hover:bg-[#3b82f6]">Trade -></button>
         </div>
       )}
 
@@ -690,7 +690,7 @@ const Dashboard = ({ state, assets, onOpenBuy }: any) => {
       </div>
 
       <div className="grid grid-cols-12 gap-4">
-        <Panel title="EQUITY CURVE Â· LIVE" subtitle={`Since ${new Date(state.startedAt).toLocaleDateString()}`} className="col-span-12 lg:col-span-8">
+        <Panel title="EQUITY CURVE . LIVE" subtitle={`Since ${new Date(state.startedAt).toLocaleDateString()}`} className="col-span-12 lg:col-span-8">
           <div className="p-4 pt-2">
             <div className="h-56">
               {equityHistory.length > 1 ? (
@@ -705,13 +705,13 @@ const Dashboard = ({ state, assets, onOpenBuy }: any) => {
                   </AreaChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-full flex items-center justify-center text-sm text-[#6b7280]">Equity curve builds as you tradeâ€¦</div>
+                <div className="h-full flex items-center justify-center text-sm text-[#6b7280]">Equity curve builds as you trade...</div>
               )}
             </div>
           </div>
         </Panel>
 
-        <Panel title="TOP MOMENTUM Â· LIVE" subtitle="Highest scoring assets Â· click to trade" className="col-span-12 lg:col-span-4">
+        <Panel title="TOP MOMENTUM . LIVE" subtitle="Highest scoring assets . click to trade" className="col-span-12 lg:col-span-4">
           <div className="divide-y divide-[#1e2f4a]">
             {topSignals.map(s => (
               <button key={s.sym} onClick={() => onOpenBuy(s)} className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-[#102544] transition-colors text-left">
@@ -806,10 +806,10 @@ const Portfolio = ({ state, assets, onOpenSell }: any) => {
         <div className="bg-[#0f1d33] p-4"><Stat label="Unrealized PnL" value={`${unrealized >= 0 ? '+' : ''}$${fmtNum(Math.abs(unrealized))}`} deltaType={unrealized >= 0 ? 'pos' : 'neg'}/></div>
         <div className="bg-[#0f1d33] p-4"><Stat label="Realized PnL" value={`${realizedPnl >= 0 ? '+' : ''}$${fmtNum(Math.abs(realizedPnl))}`} deltaType={realizedPnl >= 0 ? 'pos' : 'neg'}/></div>
         <div className="bg-[#0f1d33] p-4"><Stat label="Positions" value={state.positions.length} delta={`Cash $${fmtNum(state.cash)}`} deltaType="neutral"/></div>
-        <div className="bg-[#0f1d33] p-4"><Stat label="Win Rate" value={closedTrades.length > 0 ? `${winRate.toFixed(0)}%` : 'â€”'} delta={`${wins}W / ${losses}L`} deltaType={winRate >= 50 ? 'pos' : 'neg'}/></div>
+        <div className="bg-[#0f1d33] p-4"><Stat label="Win Rate" value={closedTrades.length > 0 ? `${winRate.toFixed(0)}%` : '-'} delta={`${wins}W / ${losses}L`} deltaType={winRate >= 50 ? 'pos' : 'neg'}/></div>
       </div>
 
-      <Panel title="OPEN POSITIONS" subtitle={state.positions.length === 0 ? 'No positions yet' : 'Click any row to sell Â· live prices update every few seconds'}>
+      <Panel title="OPEN POSITIONS" subtitle={state.positions.length === 0 ? 'No positions yet' : 'Click any row to sell . live prices update every few seconds'}>
         {state.positions.length === 0 ? (
           <div className="p-8 text-center text-sm text-[#6b7280]">
             You haven't bought any coins yet. Go to the <span className="text-[#60a5fa]">Trade</span> tab to start.
@@ -875,7 +875,7 @@ const Portfolio = ({ state, assets, onOpenSell }: any) => {
 };
 
 // ============================================================================
-// TRADE â€” screener + buy interface combined
+// TRADE - screener + buy interface combined
 // ============================================================================
 
 const Trade = ({ state, assets, onOpenBuy, onOpenSell }: any) => {
@@ -903,7 +903,7 @@ const Trade = ({ state, assets, onOpenBuy, onOpenSell }: any) => {
         onClick={() => { if (sortKey === k) setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); else { setSortKey(k); setSortDir('desc'); } }}>
       <span className="inline-flex items-center gap-1">
         {label}
-        {sortKey === k && <span className="text-[#60a5fa]">{sortDir === 'asc' ? 'â†‘' : 'â†“'}</span>}
+        {sortKey === k && <span className="text-[#60a5fa]">{sortDir === 'asc' ? '^' : 'v'}</span>}
       </span>
     </th>
   );
@@ -919,7 +919,7 @@ const Trade = ({ state, assets, onOpenBuy, onOpenSell }: any) => {
         <div className="p-4 flex flex-wrap gap-3 items-center border-b border-[#1e2f4a]">
           <div className="flex items-center gap-2 bg-[#0a1628] border border-[#1e2f4a] px-3 py-1.5 flex-1 min-w-[200px]">
             <Search size={12} className="text-[#6b7280]" />
-            <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search by name or symbolâ€¦"
+            <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search by name or symbol..."
                    className="bg-transparent outline-none text-xs font-mono flex-1 placeholder-[#6b7280]"/>
           </div>
           <div className="flex flex-wrap gap-1">
@@ -967,7 +967,7 @@ const Trade = ({ state, assets, onOpenBuy, onOpenSell }: any) => {
                     </td>
                     <td className="px-2 text-right tabular-nums text-[#9ca3af]">{a.rv.toFixed(2)}</td>
                     <td className="px-2 text-right tabular-nums text-[#9ca3af]">
-                      {owned ? (owned as Position).qty.toFixed(4) : 'â€”'}
+                      {owned ? (owned as Position).qty.toFixed(4) : '-'}
                     </td>
                     <td className="px-4 text-right">
                       <div className="flex gap-1 justify-end">
@@ -1037,7 +1037,7 @@ const StrategyLab = ({ assets }: any) => {
           </div>
         </Panel>
 
-        <Panel title={`BACKTEST Â· ${active.name}`} subtitle={active.desc} className="col-span-12 lg:col-span-9">
+        <Panel title={`BACKTEST . ${active.name}`} subtitle={active.desc} className="col-span-12 lg:col-span-9">
           <div className="p-4">
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
@@ -1150,7 +1150,7 @@ export default function App() {
     return () => clearInterval(id);
   }, [view]);
 
-  // Equity history â€” snapshot every 15s when in app
+  // Equity history - snapshot every 15s when in app
   useEffect(() => {
     if (view !== 'app' || !mounted) return;
     const id = setInterval(() => {
