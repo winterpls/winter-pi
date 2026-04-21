@@ -125,8 +125,8 @@ const fmtUsd = (n: number) => {
   if (Math.abs(n) >= 1e3) return `$${(n/1e3).toFixed(1)}K`;
   return `$${n.toFixed(2)}`;
 };
-const fmtPct = (n: number, digits = 2) => `${n >= 0 ? '+' : ''}${n.toFixed(digits)}%`;
-const fmtNum = (n: number) => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+const fmtPct = (n: number, digits = 2) => (n == null || !isFinite(n)) ? '+0.00%' : `${n >= 0 ? '+' : ''}${n.toFixed(digits)}%`;
+const fmtNum = (n: number) => (n == null || !isFinite(n)) ? '0' : n.toLocaleString('en-US', { maximumFractionDigits: 2 });
 
 const computeNAV = (state: PortfolioState, assets: Asset[]) => {
   let nav = state.cash;
