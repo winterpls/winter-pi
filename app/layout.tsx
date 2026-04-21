@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const SITE_URL = "https://winter-pi-v2.vercel.app";
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" }, verification: { google: "Jky7r5a1HmjiDNvwhNk6YWQl3-dk8OJZER5-u5-lbXU" },
   other: { author: AUTHOR, "geo.region": "US-PA", "geo.placename": "Stroudsburg", "simulation-only": "true" },
 };
 
