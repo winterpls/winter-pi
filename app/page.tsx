@@ -23,8 +23,8 @@ const INITIAL_ASSETS: Asset[] = [
   { sym: 'ETH',  name: 'Ethereum',  cat: 'L1',     basePx: 3284.90,  px: 3284.90,  chg24: 2.41,  chg7: 6.82,  vol: 18.3e9, mcap: 395e9,   rv: 0.55, atr: 142,  mom: 76, rsi: 64, beta: 1.18, liq: 96 },
   { sym: 'SOL',  name: 'Solana',    cat: 'L1',     basePx: 198.44,   px: 198.44,   chg24: 4.22,  chg7: 12.4,  vol: 4.2e9,  mcap: 91e9,    rv: 0.78, atr: 12.8, mom: 91, rsi: 72, beta: 1.65, liq: 88 },
   { sym: 'AVAX', name: 'Avalanche', cat: 'L1',     basePx: 38.21,    px: 38.21,    chg24: -1.15, chg7: 2.30,  vol: 620e6,  mcap: 15.2e9,  rv: 0.82, atr: 2.9,  mom: 54, rsi: 49, beta: 1.72, liq: 74 },
-  { sym: 'ARB',  name: 'Arbitrum',  cat: 'L2',     basePx: 0.8245,   px: 0.8245,   chg24: 3.10,  chg7: -2.80, vol: 310e6,  mcap: 3.4e9,   rv: 0.88, atr: 0.07, mom: 42, rsi: 46, beta: 1.88, liq: 69 },
-  { sym: 'OP',   name: 'Optimism',  cat: 'L2',     basePx: 1.942,    px: 1.942,    chg24: 2.55,  chg7: 1.40,  vol: 188e6,  mcap: 2.1e9,   rv: 0.91, atr: 0.18, mom: 48, rsi: 52, beta: 1.91, liq: 66 },
+  { sym: 'XRP',  name: 'XRP',       cat: 'L1',     basePx: 2.35,     px: 2.35,     chg24: 2.10,  chg7: 5.40,  vol: 2.8e9,  mcap: 134e9,   rv: 0.62, atr: 0.18, mom: 72, rsi: 58, beta: 1.12, liq: 95 },
+  { sym: 'ETC',  name: 'Ethereum Classic', cat: 'L1', basePx: 26.80, px: 26.80,    chg24: 1.30,  chg7: 3.20,  vol: 480e6,  mcap: 4.1e9,   rv: 0.74, atr: 1.8,  mom: 58, rsi: 54, beta: 1.28, liq: 78 },
   { sym: 'LINK', name: 'Chainlink', cat: 'Oracle', basePx: 21.08,    px: 21.08,    chg24: 0.95,  chg7: 5.92,  vol: 420e6,  mcap: 12.8e9,  rv: 0.68, atr: 1.4,  mom: 71, rsi: 59, beta: 1.34, liq: 84 },
   { sym: 'UNI',  name: 'Uniswap',   cat: 'DeFi',   basePx: 11.62,    px: 11.62,    chg24: -0.44, chg7: 3.10,  vol: 210e6,  mcap: 7.0e9,   rv: 0.71, atr: 0.8,  mom: 63, rsi: 55, beta: 1.41, liq: 80 },
   { sym: 'AAVE', name: 'Aave',      cat: 'DeFi',   basePx: 312.45,   px: 312.45,   chg24: 1.74,  chg7: 7.22,  vol: 180e6,  mcap: 4.6e9,   rv: 0.76, atr: 22.1, mom: 78, rsi: 63, beta: 1.52, liq: 78 },
@@ -34,11 +34,46 @@ const INITIAL_ASSETS: Asset[] = [
   { sym: 'ATOM', name: 'Cosmos',    cat: 'L1',     basePx: 6.92,     px: 6.92,     chg24: -0.85, chg7: -1.90, vol: 118e6,  mcap: 2.7e9,   rv: 0.84, atr: 0.5,  mom: 36, rsi: 42, beta: 1.48, liq: 70 },
   { sym: 'DOGE', name: 'Dogecoin',  cat: 'Meme',   basePx: 0.3812,   px: 0.3812,   chg24: 3.44,  chg7: 8.20,  vol: 1.8e9,  mcap: 55e9,    rv: 0.95, atr: 0.03, mom: 74, rsi: 66, beta: 1.82, liq: 90 },
   { sym: 'LDO',  name: 'Lido',      cat: 'DeFi',   basePx: 2.18,     px: 2.18,     chg24: 1.22,  chg7: 4.60,  vol: 96e6,   mcap: 1.9e9,   rv: 0.88, atr: 0.18, mom: 61, rsi: 57, beta: 1.61, liq: 71 },
-  { sym: 'INJ',  name: 'Injective', cat: 'DeFi',   basePx: 32.11,    px: 32.11,    chg24: 4.90,  chg7: 14.3,  vol: 280e6,  mcap: 3.0e9,   rv: 0.94, atr: 2.4,  mom: 88, rsi: 73, beta: 1.88, liq: 74 },
+  { sym: 'XLM',  name: 'Stellar',   cat: 'L1',     basePx: 0.412,    px: 0.412,    chg24: 1.80,  chg7: 4.10,  vol: 320e6,  mcap: 12.5e9,  rv: 0.68, atr: 0.03, mom: 64, rsi: 56, beta: 1.22, liq: 86 },
 ];
 
 const seed = (n: number) => { let x = Math.sin(n) * 10000; return x - Math.floor(x); };
 
+// Map our symbols to CoinGecko IDs for live price fetching.
+// Reference: https://www.coingecko.com/api/documentation
+const COINGECKO_IDS: Record<string, string> = {
+  BTC: 'bitcoin', ETH: 'ethereum', SOL: 'solana', AVAX: 'avalanche-2',
+  XRP: 'ripple', ETC: 'ethereum-classic', LINK: 'chainlink', UNI: 'uniswap',
+  AAVE: 'aave', RNDR: 'render-token', FET: 'fetch-ai', MATIC: 'matic-network',
+  ATOM: 'cosmos', DOGE: 'dogecoin', LDO: 'lido-dao', XLM: 'stellar',
+};
+
+// Fetches live prices for all tracked coins from CoinGecko.
+// Returns an updated assets array, or null if the API call fails.
+async function fetchLivePrices(currentAssets: Asset[]): Promise<Asset[] | null> {
+  try {
+    const ids = currentAssets.map(a => COINGECKO_IDS[a.sym]).filter(Boolean).join(',');
+    const url = 'https://api.coingecko.com/api/v3/simple/price?ids=' + ids +
+                '&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true';
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return currentAssets.map(a => {
+      const cgId = COINGECKO_IDS[a.sym];
+      const info = data[cgId];
+      if (!info || !info.usd) return a;
+      return {
+        ...a,
+        px: info.usd,
+        chg24: info.usd_24h_change ?? a.chg24,
+        vol: info.usd_24h_vol ?? a.vol,
+      };
+    });
+  } catch (e) {
+    console.warn('CoinGecko fetch failed, using drift simulation:', e);
+    return null;
+  }
+}
 // Drift prices realistically - each tick each asset takes a small random step
 // whose size is proportional to its realized volatility.
 const driftPrices = (assets: Asset[], tickCount: number): Asset[] => {
@@ -540,10 +575,10 @@ const Landing = ({ onEnter }: any) => (
 // DEMO BANNER - always visible
 // ============================================================================
 
-const DemoBanner = () => (
-  <div className="bg-[#2a1f0a] border-b border-[#4a3a15] px-4 h-7 flex items-center justify-center gap-2 text-[10px] font-mono tracking-wider uppercase text-[#ffb627] shrink-0">
+const DemoBanner = ({ liveDataActive }: { liveDataActive?: boolean }) => (
+  <div className={(liveDataActive ? 'bg-[#0f2a1e] border-b border-[#1d4a34] text-[#26d97f]' : 'bg-[#2a1f0a] border-b border-[#4a3a15] text-[#ffb627]') + ' px-4 h-7 flex items-center justify-center gap-2 text-[10px] font-mono tracking-wider uppercase shrink-0'}>
     <AlertCircle size={11}/>
-    <span>DEMO MODE . All prices, signals, and data are simulated . Not tracking real markets</span>
+    <span>{liveDataActive ? 'LIVE DATA . Prices from CoinGecko API . Fake money only . Not investment advice' : 'SIMULATED DATA . CoinGecko API unavailable . Using drift simulation'}</span>
   </div>
 );
 
@@ -559,7 +594,7 @@ const NAV = [
   { id: 'journal',    label: 'Journal',    icon: BookOpen },
 ];
 
-const Shell = ({ page, setPage, children, onExit, state, assets, onReset }: any) => {
+const Shell = ({ page, setPage, children, onExit, state, assets, onReset, liveDataActive }: any) => {
   const [clock, setClock] = useState(new Date());
   const [showReset, setShowReset] = useState(false);
   useEffect(() => {
@@ -571,7 +606,7 @@ const Shell = ({ page, setPage, children, onExit, state, assets, onReset }: any)
 
   return (
     <div className="min-h-screen bg-[#0a1628] text-white flex flex-col">
-      <DemoBanner />
+      <DemoBanner liveDataActive={liveDataActive} />
       <div className="border-b border-[#1e2f4a] flex items-center justify-between px-4 h-12 shrink-0">
         <div className="flex items-center gap-6">
           <button onClick={onExit} className="flex items-center gap-2 group">
@@ -1140,14 +1175,33 @@ export default function App() {
     }
   }, []);
 
-  // Price drift loop
+  // Price updates: try CoinGecko live data, fall back to drift simulation.
+  // Live fetch every 60s (respects free tier rate limit); drift between fetches for smooth UI.
+  const [liveDataActive, setLiveDataActive] = useState(false);
   useEffect(() => {
     if (view !== 'app') return;
-    const id = setInterval(() => {
+    let cancelled = false;
+    const tryLive = async () => {
+      setAssets(prev => {
+        fetchLivePrices(prev).then(result => {
+          if (cancelled) return;
+          if (result) {
+            setAssets(result);
+            setLiveDataActive(true);
+          } else {
+            setLiveDataActive(false);
+          }
+        });
+        return prev;
+      });
+    };
+    tryLive();
+    const liveId = setInterval(tryLive, 60000);
+    const driftId = setInterval(() => {
       tickRef.current += 1;
       setAssets(prev => driftPrices(prev, tickRef.current));
-    }, 3000);
-    return () => clearInterval(id);
+    }, 4000);
+    return () => { cancelled = true; clearInterval(liveId); clearInterval(driftId); };
   }, [view]);
 
   // Equity history - snapshot every 15s when in app
@@ -1251,7 +1305,7 @@ export default function App() {
 
   return (
     <>
-      <Shell page={page} setPage={setPage} state={state} assets={assets} onReset={onReset} onExit={() => setView('landing')}>
+      <Shell page={page} setPage={setPage} state={state} assets={assets} onReset={onReset} liveDataActive={liveDataActive} onExit={() => setView('landing')}>
         {pages[page]}
       </Shell>
       {showWelcome && mounted && <WelcomeModal onClose={dismissWelcome} />}
